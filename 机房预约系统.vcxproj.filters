@@ -18,6 +18,24 @@
     <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="student.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="teacher.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="manager.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Login.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Lab.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Appointment.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Identity.h">
@@ -32,5 +50,19 @@
     <ClInclude Include="teacher.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Login.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Lab.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Appointment.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="manager.txt.txt">
+      <Filter>资源文件</Filter>
+    </Text>
   </ItemGroup>
 </Project>

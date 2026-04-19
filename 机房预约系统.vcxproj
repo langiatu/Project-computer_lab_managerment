@@ -123,13 +123,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Appointment.cpp" />
+    <ClCompile Include="Lab.cpp" />
+    <ClCompile Include="Login.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="manager.cpp" />
+    <ClCompile Include="student.cpp" />
+    <ClCompile Include="teacher.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Appointment.h" />
+    <ClInclude Include="Lab.h" />
     <ClInclude Include="Identity.h" />
+    <ClInclude Include="Login.h" />
     <ClInclude Include="manager.h" />
     <ClInclude Include="student.h" />
     <ClInclude Include="teacher.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="manager.txt.txt">
+      <DeploymentContent>true</DeploymentContent>
+    </Text>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
