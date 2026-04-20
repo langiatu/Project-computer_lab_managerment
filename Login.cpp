@@ -122,16 +122,17 @@ void Login::Load()
 bool Login::Stu_vertity()
 {
 	string name;
-	int pawd;
+	int pwd;
 
 	cout << "输入用户名" << endl;
 	cin >> name;
 	cout << "输入密码" << endl;
-	cin >> pawd;
+	cin >> pwd;
 
 	for (map<int,pair<string, int>>::iterator mit = this->stu.begin(); mit != this->stu.end(); mit++) {
-		if (mit->second.first == name && mit->second.second == pawd) {
-			this->M_name = mit->second.first;
+		if (mit->second.first == name && mit->second.second == pwd) {
+			this->M_name= mit->second.first;
+			this->M_id = mit->first;
 			return 1;
 		}
 	}

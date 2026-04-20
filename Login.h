@@ -30,6 +30,7 @@ public:
 
 	//用于保存用户登录时的输入
 	string M_name;
+	int M_id;
 	
 
 	//用户账号文件是否为空
@@ -38,7 +39,7 @@ public:
 	
 	
 
-	//保存教师与学生的编号与账号的映射
+	//保存教师、学生的编号与账号的映射
 	map<int,pair<string ,int>> stu;
 	map<int, pair<string, int>> tcher;
 

@@ -28,27 +28,20 @@ int main()
 		switch (chioce) {
 		case 1:   //学生
 		{
-			if (log.Stu_vertity()) {
-				Student stu;
-				stu.user_Manager();
-			}
+			Student stu;
+			stu.user_Manager();
 			break;
 		}
 		case 2:   //教师
 		{
-			if (log.Tea_vertity()) {
-				Teacher tea;
-				tea.user_Manager();
-			}
-			
+			Teacher tea;
+			tea.user_Manager();	
 			break;
 		}
 		case 3:   //管理员
 		{
-			
-				Manager mana;
-				mana.user_Manager();
-			
+			Manager mana;
+			mana.user_Manager();	
 			break;
 		}
 		case 0:   //退出系统

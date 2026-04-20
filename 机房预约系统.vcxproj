@@ -140,11 +140,6 @@
     <ClInclude Include="student.h" />
     <ClInclude Include="teacher.h" />
   </ItemGroup>
-  <ItemGroup>
-    <Text Include="manager.txt.txt">
-      <DeploymentContent>true</DeploymentContent>
-    </Text>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -3,7 +3,9 @@
 #include "Identity.h"
 
 using namespace std;
+#include "Lab.h"
 
+#include "Login.h"
 class Teacher :public Identity {
 public:
 	//构造函数
@@ -16,6 +18,15 @@ public:
 	//显示管理员功能菜单
 	void showmenu();
 
+	//查看所有预约记录
+	void showAppoint();
+
+	//审核预约
+	void checkappoint();
+
 	//析构函数
 	~Teacher();
+
+	Login Teach_log;
+	Lab Tea_lab;
 };

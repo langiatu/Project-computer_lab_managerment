@@ -10,7 +10,7 @@ public:
 	virtual void user_Manager() = 0;
 
 	string user_name;    //用户姓名
-	int user_id;		 //用户账号
+	int user_id;		 //用户编号
 
 
 };
