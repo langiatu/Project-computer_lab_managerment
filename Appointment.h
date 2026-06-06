@@ -1,11 +1,10 @@
 ﻿#pragma once
 #include<iostream>
-using namespace std;
 #include<map>
 
 typedef int App_Rid;    //C++11    using App_id = int;
-typedef pair<string, string> App_time;
-typedef pair<int, string>   App_sta;
+typedef std::pair<std::string, std::string> App_time;
+typedef std::pair<int, std::string>   App_sta;
 
 //预约记录
 class Appointment
@@ -27,5 +26,5 @@ public:
 	int uid;
 
 	//存储预约记录状态的映射关系
-	map<int,App_sta> app_sta;
+	std::map<int,App_sta> app_sta;
 };

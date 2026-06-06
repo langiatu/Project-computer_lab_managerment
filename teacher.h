@@ -2,7 +2,7 @@
 #include<iostream>
 #include "Identity.h"
 
-using namespace std;
+
 #include "Lab.h"
 
 #include "Login.h"

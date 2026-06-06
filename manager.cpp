@@ -2,7 +2,6 @@
 #include"manager.h"
 #include<fstream>
 
-using namespace std;
 
 //构造函数
 Manager::Manager()
@@ -13,13 +12,13 @@ Manager::Manager()
 //显示管理员功能菜单
 void Manager::showmenu()
 {
-	cout << "\t-------------------------" << endl;
-	cout << "\t\t1.查看用户账号" << endl;
-	cout << "\t\t2.查看机房信息" << endl;
-	cout << "\t\t3.清空预约" << endl;
-	cout << "\t\t4.添加账号" << endl;
-	cout << "\t\t0.注销登录" << endl;
-	cout << "\t-------------------------" << endl;
+	std::cout << "\t-------------------------" << std::endl;
+	std::cout << "\t\t1.查看用户账号" << std::endl;
+	std::cout << "\t\t2.查看机房信息" << std::endl;
+	std::cout << "\t\t3.清空预约" << std::endl;
+	std::cout << "\t\t4.添加账号" << std::endl;
+	std::cout << "\t\t0.注销登录" << std::endl;
+	std::cout << "\t-------------------------" << std::endl;
 }
 
 
@@ -28,7 +27,7 @@ void Manager::user_Manager()
 {
 	//登录验证
 	if (!this->Ma_log.Mana_vertity()) {
-		cout << "用户名或密码错误" << endl;
+		std::cout << "用户名或密码错误" << std::endl;
 		return;
 	}
 
@@ -38,13 +37,13 @@ void Manager::user_Manager()
 	int select;
 
 	while (true) {
-		cout << "用户" << this->Ma_log.M_name << "正在使用系统" << endl;
+		std::cout << "用户" << this->Ma_log.M_name << "正在使用系统" << std::endl;
 
 		//显示功能菜单
 		this->showmenu();
 
-		cout << "输入选项" << endl;
-		cin >> select;
+		std::cout << "输入选项" << std::endl;
+		std::cin >> select;
 
 		switch (select) {
 		case 1:     //查看用户账号
@@ -62,7 +61,7 @@ void Manager::user_Manager()
 		case 0:		//注销登录
 			return;
 		default:
-			cout << "输入错误请重新输入" << endl;
+			std::cout << "输入错误请重新输入" << std::endl;
 			system("pause");
 		}
 		system("pause");
@@ -76,45 +75,45 @@ void Manager::showUserInf()
 {
 	//输出学生用户
 	if (!this->Ma_log.StuIsEmpty) {
-		cout << "------学生用户-------" << endl;
-		for (map<int, pair<string, int>>::iterator mit = this->Ma_log.stu.begin(); mit != this->Ma_log.stu.end(); mit++) {
-			cout << "用户名:" << mit->second.first << "  " << "编号:" << mit->first << endl;
+		std::cout << "------学生用户-------" << std::endl;
+		for (auto mit = this->Ma_log.stu.begin(); mit != this->Ma_log.stu.end(); mit++) {
+			std::cout << "用户名:" << mit->second.first << "  " << "编号:" << mit->first << std::endl;
 		}
 	}
 	else {
-		cout << "无学生用户" << endl;
+		std::cout << "无学生用户" << std::endl;
 	}
 
 	//输出教师用用户
 	if (!this->Ma_log.TeaIsEmpty) {
-		cout << "------教师用户-------" << endl;
-		for (map<int, pair<string, int>>::iterator mit = this->Ma_log.tcher.begin(); mit != this->Ma_log.tcher.end(); mit++) {
-			cout << "用户名:" << mit->second.first << "  " << "编号:" << mit->first << endl;
+		std::cout << "------教师用户-------" << std::endl;
+		for (auto mit = this->Ma_log.tcher.begin(); mit != this->Ma_log.tcher.end(); mit++) {
+			std::cout << "用户名:" << mit->second.first << "  " << "编号:" << mit->first << std::endl;
 		}
 	}
 	else {
-		cout << "无教师用户" << endl;
+		std::cout << "无教师用户" << std::endl;
 	}
 }
 
 //清空预约
 void Manager::clearAppoint()
 {
-	ofstream ofs;
+	std::ofstream ofs;
 	
 	
 	int select;
-	cout << "确定清空 1.确定 0.取消" << endl;
-	cin >> select;
+	std::cout << "确定清空 1.确定 0.取消" << std::endl;
+	std::cin >> select;
 	if (select == 1) {
-		ofs.open("appointment.txt", ios::trunc);
+		ofs.open("appointment.txt", std::ios::trunc);
 		if (ofs.is_open()) {
-			cout << "已清空" << endl;
+			std::cout << "已清空" << std::endl;
 			ofs.close();
 			return;
 		}
 		else {
-			cout << "清空出错" << endl;
+			std::cout << "清空出错" << std::endl;
 		}
 	}
 
@@ -124,37 +123,54 @@ void Manager::clearAppoint()
 void Manager::addUser()
 {
 	int select;
-	cout << "1.添加教师账号 2.添加学生账号" << endl;
-	cin >> select;
+	std::cout << "1.添加教师账号 2.添加学生账号" << std::endl;
+	std::cin >> select;
 	if (select != 1 && select != 2) {
-		cout << "输入无效，请重新输入" << endl;
-		cin >> select;
+		std::cout << "输入无效，请重新输入" << std::endl;
+		std::cin >> select;
 	}	
 
 	int id;
 	int pwd;
-	string name;
+	std::string name;
 
 
 	//设置新用户账号信息
-	cout << "输入用户编号 1-50" << endl;      //待改进-----输入类型不匹配   依据数据类型的大小判断
-	cin >> id;
+
+	/*std::cout << "输入用户编号 1-50" << std::endl;      //待改进-----输入类型不匹配   依据数据类型的大小判断
+	std::cin >> id;
 	
 	while (sizeof(id) != sizeof(int)) {
-		cout << "输入编号无效，请重新输入" << endl;
-		cin >> id;
+		std::cout << "输入编号无效，请重新输入" << std::endl;
+		std::cin >> id;
+	}*/
+
+	//修改后
+	while (true) {
+		std::cout << "输入用户编号1-50" << std::endl;
+
+		if (std::cin >> id && id >= 1 && id <= 50) {
+			break;
+		}
+		else if(id == 0) {
+			return;
+		}
+
+		std::cout << "输入编号无效，请重新输入,输入0返回上一步" << std::endl;
+		std::cin.clear();
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	}
 
 	while (this->IdExist(id)) {
-		cout << "编号已存在，请重新输入" << endl;
-		cin >> id;
+		std::cout << "编号已存在，请重新输入" << std::endl;
+		std::cin >> id;
 	}
 
-	cout << "输入用户名" << endl;
-	cin >> name;
+	std::cout << "输入用户名" << std::endl;
+	std::cin >> name;
 
-	cout << "输入用户初始密码" << endl;
-	cin >> pwd;
+	std::cout << "输入用户初始密码" << std::endl;
+	std::cin >> pwd;
 
 	//将新添加的用户账号添加至相关存储容器
 	if (select == 1) {
@@ -168,27 +184,27 @@ void Manager::addUser()
 	
 	this->userSave(select,id);
 	this->Ma_log.Load();
-	cout << "添加成功" << endl;
+	std::cout << "添加成功" << std::endl;
 }
 
 //查看机房信息
 void Manager::showlabInf()
 {
-	for (map<int, int>::iterator mit = this->Ma_lab.labInf.begin(); mit != this->Ma_lab.labInf.end(); mit++) {
-		cout << "机房编号\t" << mit->first << "机房容量" << mit->second << endl;
+	for (auto mit = this->Ma_lab.labInf.begin(); mit != this->Ma_lab.labInf.end(); mit++) {
+		std::cout << "机房编号\t" << mit->first << "机房容量" << mit->second << std::endl;
 	}
 }
 
 //检测用户id是否存在
 bool Manager::IdExist(int id)
 {
-	for (map<int, pair<string, int>>::iterator mit = this->Ma_log.stu.begin(); mit != this->Ma_log.stu.end(); mit++) {
+	for (auto mit = this->Ma_log.stu.begin(); mit != this->Ma_log.stu.end(); mit++) {
 		if (mit->first == id) {
 			return true;
 		}
 	}
 
-	for (map<int, pair<string, int>>::iterator mit = this->Ma_log.tcher.begin(); mit != this->Ma_log.tcher.end(); mit++) {
+	for (auto mit = this->Ma_log.tcher.begin(); mit != this->Ma_log.tcher.end(); mit++) {
 		if (mit->first == id) {
 			return true;
 		}
@@ -201,17 +217,17 @@ bool Manager::IdExist(int id)
 void Manager::clearApp()
 {
 	int select;
-	cout << "确定清空 1.确定 2.取消" << endl;
-	cin >> select;
+	std::cout << "确定清空 1.确定 2.取消" << std::endl;
+	std::cin >> select;
 
 	if (select == 1) {
 		//调用lab内的接口  清空文件
 		this->Ma_lab.fileclear();
 		this->Ma_lab.Load();
-		cout << "清空成功" << endl;
+		std::cout << "清空成功" << std::endl;
 	}
 	else {
-		cout << "已取消" << endl;
+		std::cout << "已取消" << std::endl;
 	}
 	
 }
@@ -219,29 +235,29 @@ void Manager::clearApp()
 //保存新用户账号
 void Manager::userSave(int type,int key)
 {
-	ofstream ofs;
+	std::ofstream ofs;
 	if (type == 1)   //新用户为教师
 	{
-		ofs.open("teacher.txt",ios::app);
+		ofs.open("teacher.txt",std::ios::app);
 	}
 	else			 //新用户为学生
 	{
-		ofs.open("student.txt",ios::app);
+		ofs.open("student.txt",std::ios::app);
 	}
 
 	if (!ofs.is_open())
 	{
-		cout << "添加账号失败，请检查相关文件" << endl;
+		std::cout << "添加账号失败，请检查相关文件" << std::endl;
 	}
 	else {
 		
 		if (type == 1) {   //将新添加的教师账号保存至文件
 			ofs << key << "  " << this->Ma_log.tcher[key].first << "  " << this->Ma_log.tcher[key].second;
-			ofs << endl;
+			ofs << std::endl;
 		}
 		else{				//将新添加的学生账号保存至文件
 			ofs << key << "  " << this->Ma_log.stu[key].first << "  " << this->Ma_log.stu[key].second;
-			ofs << endl;
+			ofs << std::endl;
 		}
 		
 	}

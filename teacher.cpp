@@ -13,11 +13,11 @@ Teacher::Teacher()
 //显示教师功能菜单
 void Teacher::showmenu()
 {
-	cout << "\t-------------------------" << endl;
-	cout << "\t\t1.审核预约" << endl;
-	cout << "\t\t2.查看所有预约" << endl;
-	cout << "\t\t0.注销登录" << endl;
-	cout << "\t-------------------------" << endl;
+	std::cout << "\t-------------------------" << std::endl;
+	std::cout << "\t\t1.审核预约" << std::endl;
+	std::cout << "\t\t2.查看所有预约" << std::endl;
+	std::cout << "\t\t0.注销登录" << std::endl;
+	std::cout << "\t-------------------------" << std::endl;
 }
 
 //教师功能管理函数
@@ -25,7 +25,7 @@ void Teacher::user_Manager()
 {
 	//登陆验证
 	if (!this->Teach_log.Tea_vertity()) {
-		cout << "用户名或密码错误" << endl;
+		std::cout << "用户名或密码错误" << std::endl;
 		return;
 	}
 
@@ -33,13 +33,13 @@ void Teacher::user_Manager()
 	int select;
 
 	while (true) {
-		cout << "用户" << this->Teach_log.M_name << "正在使用系统" << endl;
+		std::cout << "用户" << this->Teach_log.M_name << "正在使用系统" << std::endl;
 
 		//显示功能菜单
 		this->showmenu();
 
-		cout << "输入选项" << endl;
-		cin >> select;
+		std::cout << "输入选项" << std::endl;
+		std::cin >> select;
 
 		switch (select) {
 		case 1:     //审核预约
@@ -51,7 +51,7 @@ void Teacher::user_Manager()
 		case 0:		//注销登录
 			return;
 		default:
-			cout << "输入错误请重新输入" << endl;
+			std::cout << "输入错误请重新输入" << std::endl;
 			
 		}
 		system("pause");
@@ -65,11 +65,11 @@ void Teacher::user_Manager()
 void Teacher::showAppoint()
 {
 	if (this->Tea_lab.appointIsEmpty) {
-		cout << "预约记录为空" << endl;
+		std::cout << "预约记录为空" << std::endl;
 	}
 	else {
 		for (vector<Appointment>::iterator it = this->Tea_lab.appoint.begin(); it != this->Tea_lab.appoint.end(); it++) {
-			cout << "用户：" << this->Teach_log.stu[it->uid].first << "  机房：" << it->rid << "  " << it->time.first << "  " << it->time.second << "  " << it->sta.second << endl;
+			std::cout << "用户：" << this->Teach_log.stu[it->uid].first << "  机房：" << it->rid << "  " << it->time.first << "  " << it->time.second << "  " << it->sta.second << std::endl;
 		}
 	}
 }
@@ -84,7 +84,7 @@ void Teacher::checkappoint()
 	//输出需要审核的预约记录
 	for (vector<Appointment>::iterator it = this->Tea_lab.appoint.begin(); it != this->Tea_lab.appoint.end(); it++) {
 		if (it->sta.first == 0) {
-			cout << "用户：" << it->uid << "  机房：" << it->rid << "  " << it->time.first << it->time.second << "  " << it->sta.second << endl;
+			std::cout << "用户：" << it->uid << "  机房：" << it->rid << "  " << it->time.first << it->time.second << "  " << it->sta.second << std::endl;
 			flag = 1;
 		}
 		else {
@@ -93,11 +93,11 @@ void Teacher::checkappoint()
 
 		//审核 ---- 修改预约记录的状态
 		int select;
-		cout << "是否确定通过 1.通过 2.不通过" << endl;
-		cin >> select;
+		std::cout << "是否确定通过 1.通过 2.不通过" << std::endl;
+		std::cin >> select;
 		while (select != 1 && select != 2) {
-			cout << "输入无效请重新输入" << endl;
-			cin >> select;
+			std::cout << "输入无效请重新输入" << std::endl;
+			std::cin >> select;
 		}
 
 		if (select == 1) {
@@ -114,13 +114,13 @@ void Teacher::checkappoint()
 	}
 	
 	if (flag == 1) {    //有需要审核的记录
-		cout << "审核完成" << endl;
+		std::cout << "审核完成" << std::endl;
 		//保存更改至文件
 		this->Tea_lab.appointSave();
 		this->Tea_lab.Load();
 	}
 	else {
-		cout << "无需要审核的预约" << endl;
+		std::cout << "无需要审核的预约" << std::endl;
 	}
 }
 

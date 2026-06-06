@@ -1,6 +1,5 @@
 ﻿#pragma once
 #include<iostream>
-using namespace std;
 #include<string>
 
 #include<map>
@@ -29,7 +28,7 @@ public:
 	~Login();
 
 	//用于保存用户登录时的输入
-	string M_name;
+	std::string M_name;
 	int M_id;
 	
 
@@ -40,9 +39,9 @@ public:
 	
 
 	//保存教师、学生的编号与账号的映射
-	map<int,pair<string ,int>> stu;
-	map<int, pair<string, int>> tcher;
+	std::map<int,std::pair<std::string ,int>> stu;
+	std::map<int, std::pair<std::string, int>> tcher;
 
-	map<string, int> managers;
+	std::map<std::string, int> managers;
 	
 };

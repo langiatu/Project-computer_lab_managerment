@@ -3,8 +3,6 @@
 #include<fstream>
 #include <string>
 
-using namespace std;
-
 //构造函数
 Student::Student()
 {
@@ -15,13 +13,13 @@ Student::Student()
 //显示学生功能菜单
 void Student::showmenu()
 {
-	cout << "\t-------------------------" << endl;
-	cout << "\t\t1.申请预约" << endl;
-	cout << "\t\t2.查看预约记录" << endl;
-	cout << "\t\t3.查看所有预约" << endl;
-	cout << "\t\t4.取消预约" << endl;
-	cout << "\t\t0.注销登录" << endl;
-	cout << "\t-------------------------" << endl;
+	std::cout << "\t-------------------------" << std::endl;
+	std::cout << "\t\t1.申请预约" << std::endl;
+	std::cout << "\t\t2.查看预约记录" << std::endl;
+	std::cout << "\t\t3.查看所有预约" << std::endl;
+	std::cout << "\t\t4.取消预约" << std::endl;
+	std::cout << "\t\t0.注销登录" << std::endl;
+	std::cout << "\t-------------------------" << std::endl;
 }
 
 //学生功能管理函数
@@ -30,7 +28,7 @@ void Student::user_Manager()
 
 	//登陆验证
 	if (!this->Stu_log.Stu_vertity()) {
-		cout << "用户名或密码错误" << endl;
+		std::cout << "用户名或密码错误" << std::endl;
 		return;
 	}
 
@@ -41,13 +39,13 @@ void Student::user_Manager()
 	int select;
 
 	while (true) {
-		cout << "用户" << this->Stu_log.M_name << "正在使用系统" << endl;
+		std::cout << "用户" << this->Stu_log.M_name << "正在使用系统" << std::endl;
 
 		//显示功能菜单
 		this->showmenu();
 
-		cout << "输入选项" << endl;
-		cin >> select;
+		std::cout << "输入选项" << std::endl;
+		std::cin >> select;
 
 		switch (select) {
 		case 1:     //申请预约
@@ -66,7 +64,7 @@ void Student::user_Manager()
 			return;
 
 		default:
-			cout << "输入错误请重新输入" << endl;
+			std::cout << "输入错误请重新输入" << std::endl;
 		}
 		system("pause");
 		system("cls");
@@ -83,20 +81,20 @@ void Student::addAppoint()
 
 	appoint.uid = this->user_id;
 
-	cout << "选择需要预约的机房 1.1号 2.2号 3.3号" << endl;
-	cin >> appoint.rid;
+	std::cout << "选择需要预约的机房 1.1号 2.2号 3.3号" << std::endl;
+	std::cin >> appoint.rid;
 	while (appoint.rid != 1 && appoint.rid != 2 && appoint.rid != 3) {
-		cout << "请输入正确的选项" << endl;
-		cin >> appoint.rid;
+		std::cout << "请输入正确的选项" << std::endl;
+		std::cin >> appoint.rid;
 	}
 
 	int ftime;
 	int stime;
-	cout << "选择预约时间 1-5 周一至周五" << endl;
-	cin >> ftime;
+	std::cout << "选择预约时间 1-5 周一至周五" << std::endl;
+	std::cin >> ftime;
 	while(ftime > 5 || ftime < 1) {
-		cout << "请输入正确的选项" << endl;
-		cin >> ftime;
+		std::cout << "请输入正确的选项" << std::endl;
+		std::cin >> ftime;
 	}
 	switch (ftime) {
 	case 1:
@@ -116,11 +114,11 @@ void Student::addAppoint()
 		break;
 	}
 
-	cout << "1.上午 2.下午" << endl;
-	cin >> stime;
+	std::cout << "1.上午 2.下午" << std::endl;
+	std::cin >> stime;
 	while (stime != 1 && stime != 2) {
-		cout << "请输入正确的选项" << endl;
-		cin >> stime;
+		std::cout << "请输入正确的选项" << std::endl;
+		std::cin >> stime;
 	}
 
 	switch (stime) {
@@ -138,7 +136,7 @@ void Student::addAppoint()
 	this->Stu_lab.appoint.push_back(appoint);
 	this->Stu_lab.appointSave();
 
-	cout << "提交申请成功" << endl;
+	std::cout << "提交申请成功" << std::endl;
 	this->Stu_lab.appointIsEmpty = false;
 }
 
@@ -147,12 +145,12 @@ void Student::addAppoint()
 void Student::showAppoint()
 {
 	if (this->Stu_lab.appointIsEmpty) {
-		cout << "无预约记录" << endl;
+		std::cout << "无预约记录" << std::endl;
 	}
 	else {
 		
-		for (vector<Appointment>::iterator it = this->Stu_lab.appoint.begin(); it != this->Stu_lab.appoint.end(); it++) {
-			cout << "用户：" << this->Stu_log.stu[it->uid].first << "  机房：" << it->rid << "  " << it->time.first << "  " << it->time.second << "  " << it->sta.second << endl;
+		for (auto it = this->Stu_lab.appoint.begin(); it != this->Stu_lab.appoint.end(); it++) {
+			std::cout << "用户：" << this->Stu_log.stu[it->uid].first << "  机房：" << it->rid << "  " << it->time.first << "  " << it->time.second << "  " << it->sta.second << std::endl;
 		}
 	}
 }
@@ -161,9 +159,9 @@ void Student::showAppoint()
 void Student::showMyApp()
 {
 	//从保存记录的容器中筛选预约记录的用户编号为本用户编号的记录
-	for (vector<Appointment>::iterator it = this->Stu_lab.appoint.begin(); it != this->Stu_lab.appoint.end(); it++) {
+	for (auto it = this->Stu_lab.appoint.begin(); it != this->Stu_lab.appoint.end(); it++) {
 		if (it->uid == this->user_id) {
-			cout << "用户：" << this->user_name << "  机房：" << it->rid << "  " << it->time.first << "  " << it->time.second << "  " << it->sta.second << endl;
+			std::cout << "用户：" << this->user_name << "  机房：" << it->rid << "  " << it->time.first << "  " << it->time.second << "  " << it->sta.second << std::endl;
 		}
 	}
 }
@@ -174,9 +172,9 @@ void Student::cancelAppoint()
 	flag = 0; //假设暂无预约可以取消
 
 	//输出需要审核的预约记录
-	for (vector<Appointment>::iterator it = this->Stu_lab.appoint.begin(); it != this->Stu_lab.appoint.end(); it++) {
+	for (auto it = this->Stu_lab.appoint.begin(); it != this->Stu_lab.appoint.end(); it++) {
 		if (it->sta.first == 0 && it->uid == this->user_id) {
-			cout << "用户：" << it->uid << "  机房：" << it->rid << "  " << it->time.first << it->time.second << "  " << it->sta.second << endl;
+			std::cout << "用户：" << it->uid << "  机房：" << it->rid << "  " << it->time.first << it->time.second << "  " << it->sta.second << std::endl;
 			flag = 1;
 		}
 		else {
@@ -185,11 +183,11 @@ void Student::cancelAppoint()
 
 		//取消 ---- 修改预约记录的状态
 		int select;
-		cout << "是否确定取消 1.确定 2.返回" << endl;
-		cin >> select;
+		std::cout << "是否确定取消 1.确定 2.返回" << std::endl;
+		std::cin >> select;
 		while (select != 1 && select != 2) {
-			cout << "输入无效请重新输入" << endl;
-			cin >> select;
+			std::cout << "输入无效请重新输入" << std::endl;
+			std::cin >> select;
 		}
 
 		if (select == 1) {
@@ -204,13 +202,13 @@ void Student::cancelAppoint()
 	}
 
 	if (flag == 1) {    //有需要取消的记录
-		cout << "取消完成" << endl;
+		std::cout << "取消完成" << std::endl;
 		//保存更改至文件
 		this->Stu_lab.appointSave();
 		this->Stu_lab.Load();
 	}
 	else {
-		cout << "无可以被取消的预约" << endl;
+		std::cout << "无可以被取消的预约" << std::endl;
 	}
 }
 

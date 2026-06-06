@@ -4,7 +4,6 @@
 #include "Identity.h"
 #include "Lab.h"
 
-using namespace std;
 
 class Manager :public Identity
 {

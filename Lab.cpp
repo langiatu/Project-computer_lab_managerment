@@ -1,9 +1,7 @@
 ﻿#include<iostream>
-
-using namespace std;
-
-#include "Lab.h"
 #include<fstream>
+#include "Lab.h"
+
 
 //构造函数
 Lab::Lab()
@@ -23,17 +21,17 @@ void Lab::initlab() {
 	//1号机房
 	id = 1;
 	size = 20;
-	this->labInf.insert(make_pair(id,size));
+	this->labInf.insert(std::make_pair(id,size));
 
 	//2号机房
 	id = 2;
 	size = 50;
-	this->labInf.insert(make_pair(id, size));
+	this->labInf.insert(std::make_pair(id, size));
 
 	//3号机房
 	id = 3;
 	size = 100;
-	this->labInf.insert(make_pair(id, size));
+	this->labInf.insert(std::make_pair(id, size));
 }
 
 //加载文件记录
@@ -44,8 +42,8 @@ void Lab::Load()
 	this->appoint.clear();
 
 
-	ifstream ifs;
-	ifs.open("appointment.txt",ios::in);
+	std::ifstream ifs;
+	ifs.open("appointment.txt",std::ios::in);
 	if (!ifs.is_open()) {
 		this->appointIsEmpty = true;
 		ifs.close();
@@ -75,11 +73,11 @@ void Lab::Load()
 //保存记录到文件
 void Lab::appointSave()
 {
-	ofstream ofs;
-	ofs.open("appointment.txt",ios::out);
+	std::ofstream ofs;
+	ofs.open("appointment.txt",std::ios::out);
 
 	if (!ofs.is_open()) {
-		cout << "保存预约记录至文件中出错,即将退出....." << endl;
+		std::cout << "保存预约记录至文件中出错,即将退出....." << std::endl;
 		system("pause");
 		ofs.close();
 		exit(1);
@@ -87,9 +85,9 @@ void Lab::appointSave()
 	else {
 		//先清空原先文件的内容 防止重复添加
 
-		for (vector<Appointment>::iterator it = this->appoint.begin(); it != this->appoint.end(); it++) {
+		for (auto it = this->appoint.begin(); it != this->appoint.end(); it++) {
 			ofs << it->uid << "  " << it->rid << "  " << it->time.first << "  " << it->time.second << "  " << it->sta.first << "  " << it->sta.second;
-			ofs << endl;
+			ofs << std::endl;
 		}
 	}
 }
@@ -97,8 +95,8 @@ void Lab::appointSave()
 //清空文件
 void Lab::fileclear()
 {
-	ofstream ofs;
-	ofs.open("appointment.txt",ios::trunc);
+	std::ofstream ofs;
+	ofs.open("appointment.txt",std::ios::trunc);
 	ofs.close();
 }
 

@@ -4,7 +4,6 @@
 
 #include<algorithm>
 
-using namespace std;
 
 //构造函数
 Login::Login()
@@ -20,8 +19,8 @@ Login::Login()
 void Login::Load()
 {
 	//加载学生用户信息
-	ifstream ifs1;
-	ifs1.open("student.txt", ios::in);
+	std::ifstream ifs1;
+	ifs1.open("student.txt", std::ios::in);
 	if (!ifs1.is_open()) {
 		this->StuIsEmpty = true;
 		ifs1.close();
@@ -38,7 +37,7 @@ void Login::Load()
 			this->StuIsEmpty = false;
 
 			ifs1.putback(eof);
-			string name;
+			std::string name;
 			int pwd;
 			int id;
 
@@ -46,16 +45,16 @@ void Login::Load()
 
 				ifs1 >> name >> pwd;
 
-				pair<string, int>  na_pwd = make_pair(name, pwd);
+				std::pair<std::string, int>  na_pwd = std::make_pair(name, pwd);
 
-				this->stu.insert(make_pair(id, na_pwd));
+				this->stu.insert(std::make_pair(id, na_pwd));
 			}
 			ifs1.close();
 		}
 	}
 	//加载教师用户信息
-	ifstream ifs2;
-	ifs2.open("teacher.txt", ios::in);
+	std::ifstream ifs2;
+	ifs2.open("teacher.txt", std::ios::in);
 	if (!ifs2.is_open()) {
 		this->TeaIsEmpty = true;
 		ifs2.close();
@@ -72,7 +71,7 @@ void Login::Load()
 			this->TeaIsEmpty = false;
 
 			ifs2.putback(eof);
-			string name;
+			std::string name;
 			int pwd;
 			int id;
 			
@@ -80,18 +79,18 @@ void Login::Load()
 
 				ifs2 >> name >> pwd;
 
-				pair<string, int>  na_pwd = make_pair(name, pwd);
+				std::pair<std::string, int>  na_pwd = std::make_pair(name, pwd);
 				
 
-				this->tcher.insert(make_pair(id,na_pwd));
+				this->tcher.insert(std::make_pair(id,na_pwd));
 			}
 			ifs2.close();
 		}
 	}
 
 	//加载管理员用户信息
-	ifstream ifs3;
-	ifs3.open("manager.txt",ios::in);
+	std::ifstream ifs3;
+	ifs3.open("manager.txt",std::ios::in);
 	if (!ifs3.is_open()) {
 
 		ifs3.close();
@@ -106,7 +105,7 @@ void Login::Load()
 		}
 		else {
 			ifs3.putback(eof);
-			string name;
+			std::string name;
 			int pwd;
 			
 			while (ifs3 >> name) {
@@ -121,15 +120,15 @@ void Login::Load()
 //学生登录验证
 bool Login::Stu_vertity()
 {
-	string name;
+	std::string name;
 	int pwd;
 
-	cout << "输入用户名" << endl;
-	cin >> name;
-	cout << "输入密码" << endl;
-	cin >> pwd;
+	std::cout << "输入用户名" << std::endl;
+	std::cin >> name;
+	std::cout << "输入密码" << std::endl;
+	std::cin >> pwd;
 
-	for (map<int,pair<string, int>>::iterator mit = this->stu.begin(); mit != this->stu.end(); mit++) {
+	for (auto mit = this->stu.begin(); mit != this->stu.end(); mit++) {
 		if (mit->second.first == name && mit->second.second == pwd) {
 			this->M_name= mit->second.first;
 			this->M_id = mit->first;
@@ -142,15 +141,15 @@ bool Login::Stu_vertity()
 //教师登录验证
 bool Login::Tea_vertity()
 {
-	string name;
+	std::string name;
 	int pawd;
 
-	cout << "输入用户名" << endl;
-	cin >> name;
-	cout << "输入密码" << endl;
-	cin >> pawd;
+	std::cout << "输入用户名" << std::endl;
+	std::cin >> name;
+	std::cout << "输入密码" << std::endl;
+	std::cin >> pawd;
 
-	for (map<int, pair<string, int>>::iterator mit = this->tcher.begin(); mit != this->tcher.end(); mit++) {
+	for (auto mit = this->tcher.begin(); mit != this->tcher.end(); mit++) {
 		if (mit->second.first == name && mit->second.second == pawd) {
 			this->M_name = mit->second.first;
 			return 1;
@@ -162,21 +161,19 @@ bool Login::Tea_vertity()
 //管理员登录验证
 bool Login::Mana_vertity()
 {
-	string name;
+	std::string name;
 	int pwd;
 
-	cout << "输入用户名" << endl;
-	cin >> name;
-	cout << "输入密码" << endl;
-	cin >> pwd;
+	std::cout << "输入用户名" << std::endl;
+	std::cin >> name;
+	std::cout << "输入密码" << std::endl;
+	std::cin >> pwd;
 
-	for (map<string, int>::iterator mit = this->managers.begin(); mit != this->managers.end(); mit++) {
-		cout << name << "  " << pwd << endl;
+	for (auto mit = this->managers.begin(); mit != this->managers.end(); mit++) {
 		if (mit->first == name && mit->second == pwd) {
 			this->M_name = mit->first;
 			return 1;
 		}
-		cout << mit->first << "  " << mit->second << endl;
 	}
 	
 	return 0;

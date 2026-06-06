@@ -4,7 +4,6 @@
 #include "Login.h"
 #include "Lab.h"
 
-using namespace std;
 
 class Student :public Identity {
 public:

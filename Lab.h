@@ -1,7 +1,5 @@
 ﻿#pragma once
 #include<iostream>
-
-using namespace std;
 #include<map>
 #include<vector>
 #include "Appointment.h"
@@ -30,13 +28,13 @@ public:
 	~Lab();
 	
 	//机房信息 编号 最大容量
-	map<int, int> labInf;
+	std::map<int, int> labInf;
 
 	//预约记录文件是否为空
 	bool appointIsEmpty;
 
 	//所有预约记录
-	vector<Appointment> appoint;
+	std::vector<Appointment> appoint;
 };
 
 

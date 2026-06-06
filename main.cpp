@@ -1,5 +1,4 @@
 ﻿#include<iostream>
-using namespace std;
 #include "Identity.h"
 #include"student.h"
 #include"teacher.h"
@@ -9,49 +8,49 @@ using namespace std;
 
 int main()
 {
-	int chioce;
+	int choice;
 
 
 	while (true)
 	{
-		cout << "\t-------------------------" << endl;
-		cout << "\t\t1.学生登录" << endl;
-		cout << "\t\t2.教师登录" << endl;
-		cout << "\t\t3.管理员登录" << endl;
-		cout << "\t\t0.退出系统" << endl;
-		cout << "\t-------------------------" << endl;
+		std::cout << "\t-------------------------" << std::endl;
+		std::cout << "\t\t1.学生登录" << std::endl;
+		std::cout << "\t\t2.教师登录" << std::endl;
+		std::cout << "\t\t3.管理员登录" << std::endl;
+		std::cout << "\t\t0.退出系统" << std::endl;
+		std::cout << "\t-------------------------" << std::endl;
 
-		cout << "输入选项" << endl;
-		cin >> chioce;
+		std::cout << "输入选项" << std::endl;
+		std::cin >> choice;
 
 		Login log;
-		switch (chioce) {
+		switch (choice) {
 		case 1:   //学生
 		{
-			Student stu;
-			stu.user_Manager();
+			std::unique_ptr<Identity> user = std::make_unique<Student>();
+			user->user_Manager();
 			break;
 		}
 		case 2:   //教师
 		{
-			Teacher tea;
-			tea.user_Manager();	
+			std::unique_ptr<Identity> user = std::make_unique<Teacher>();
+			user->user_Manager();	
 			break;
 		}
 		case 3:   //管理员
 		{
-			Manager mana;
-			mana.user_Manager();	
+			std::unique_ptr<Identity> user = std::make_unique<Manager>();
+			user->user_Manager();	
 			break;
 		}
 		case 0:   //退出系统
 		{
-			cout << "正在退出...." << endl;
+			std::cout << "正在退出...." << std::endl;
 			return 0;
 		}
 		default:
 		{
-			cout << "输入错误，请重新输入" << endl;
+			std::cout << "输入错误，请重新输入" << std::endl;
 			break;
 		}
 		}
